@@ -1,3 +1,4 @@
+from argparse import Namespace
 from django.contrib import admin
 from django.urls import path, include, re_path
 from django.conf import settings
@@ -11,6 +12,8 @@ from apps.establecimientos.views import establecimientos
 from apps.evaluaciones.views import cargar_respuestas, ver_puntajes
 from apps.unidadgestion import views_pers_doc_central
 from apps.operativoschaco.views import guardar_examen, examen_guardado
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -59,6 +62,7 @@ urlpatterns = [
     path('examendiag/',include('apps.operativchaco.urls',namespace='examendiag')),
     path('consultas/', include('apps.consultas.urls', namespace='consultas_api')),
     path('ayuda/', include('apps.ayudarenpe.urls', namespace='ayuda')),
+    path('evaluaciones_educativas/', include('apps.evaluaciones_educativas.urls', namespace='evaluaciones_educativas')),
     re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),    
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
